@@ -1,0 +1,535 @@
+14 Apr 21:53    INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2023
+state = INFO
+reproducibility = True
+data_path = dataset/gowalla-merged
+show_progress = False
+save_dataset = False
+save_dataloaders = False
+benchmark_filename = None
+
+Training Hyper Parameters:
+checkpoint_dir = saved
+epochs = 300
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}
+metrics = ['Recall', 'NDCG']
+topk = [20, 50]
+valid_metric = Recall@20
+valid_metric_bigger = True
+eval_batch_size = 4096000
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [10,inf)
+item_inter_num_interval = [10,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+
+Other Hyper Parameters: 
+neg_sampling = {'uniform': 1}
+repeatable = False
+MODEL_TYPE = ModelType.GENERAL
+eval_setting = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': 'full'}
+embedding_size = 64
+n_layers = 3
+reg_weight = 0.0001
+ssl_temp = 0.1
+alpha = 0.4
+beta = 0.4
+gamma = 0.4
+ssl_reg_alpha = 1e-05
+ssl_reg_beta = 1e-05
+ssl_reg_gamma = 1e-06
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+device = cuda
+train_neg_sample_args = {'strategy': 'by', 'by': 1, 'distribution': 'uniform'}
+eval_neg_sample_args = {'strategy': 'full', 'distribution': 'uniform'}
+
+
+14 Apr 21:53    INFO  gowalla-merged
+The number of users: 29859
+Average actions of users: 34.411681961283406
+The number of items: 40989
+Average actions of items: 25.067434371035425
+The number of inters: 1027464
+The sparsity of the dataset: 99.91604935595258%
+Remain Fields: ['user_id', 'item_id']
+14 Apr 21:53    INFO  [Training]: train_batch_size = [2048] negative sampling: [{'uniform': 1}]
+14 Apr 21:53    INFO  [Evaluation]: eval_batch_size = [4096000] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+/home/dell/hewei/CGCL-Pytorch-master/CGCL.py:86: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:230.)
+  i = torch.LongTensor([row, col])
+14 Apr 21:53    INFO  CGCL(
+  (user_embedding): Embedding(29859, 64)
+  (item_embedding): Embedding(40989, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 4534272
+14 Apr 21:53    INFO  epoch 0 training [time: 29.49s, train_loss1: 286.2379, train_loss2: 0.0003, train_loss3: 19.3935, train_loss4: 76.2715, train_loss5: 7.2757]
+14 Apr 21:53    INFO  epoch 0 evaluating [time: 1.09s, valid_score: 0.029700]
+14 Apr 21:53    INFO  valid result: 
+recall@20 : 0.0297    recall@50 : 0.0434    ndcg@20 : 0.0166    ndcg@50 : 0.0199    
+14 Apr 21:53    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:54    INFO  epoch 1 training [time: 28.58s, train_loss1: 286.1658, train_loss2: 0.0004, train_loss3: 15.3448, train_loss4: 69.7563, train_loss5: 6.8291]
+14 Apr 21:54    INFO  epoch 1 evaluating [time: 1.08s, valid_score: 0.044800]
+14 Apr 21:54    INFO  valid result: 
+recall@20 : 0.0448    recall@50 : 0.066    ndcg@20 : 0.0258    ndcg@50 : 0.031    
+14 Apr 21:54    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:54    INFO  epoch 2 training [time: 28.73s, train_loss1: 286.0838, train_loss2: 0.0005, train_loss3: 15.0010, train_loss4: 67.6997, train_loss5: 6.6654]
+14 Apr 21:54    INFO  epoch 2 evaluating [time: 1.13s, valid_score: 0.057800]
+14 Apr 21:54    INFO  valid result: 
+recall@20 : 0.0578    recall@50 : 0.0847    ndcg@20 : 0.0337    ndcg@50 : 0.0402    
+14 Apr 21:54    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:55    INFO  epoch 3 training [time: 28.53s, train_loss1: 285.9829, train_loss2: 0.0006, train_loss3: 14.9156, train_loss4: 66.4528, train_loss5: 6.5625]
+14 Apr 21:55    INFO  epoch 3 evaluating [time: 1.08s, valid_score: 0.070300]
+14 Apr 21:55    INFO  valid result: 
+recall@20 : 0.0703    recall@50 : 0.101    ndcg@20 : 0.0403    ndcg@50 : 0.0478    
+14 Apr 21:55    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:55    INFO  epoch 4 training [time: 28.53s, train_loss1: 285.8568, train_loss2: 0.0007, train_loss3: 14.9179, train_loss4: 65.5616, train_loss5: 6.4879]
+14 Apr 21:55    INFO  epoch 4 evaluating [time: 1.09s, valid_score: 0.078500]
+14 Apr 21:55    INFO  valid result: 
+recall@20 : 0.0785    recall@50 : 0.1143    ndcg@20 : 0.0455    ndcg@50 : 0.0542    
+14 Apr 21:55    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:56    INFO  epoch 5 training [time: 28.67s, train_loss1: 285.6960, train_loss2: 0.0008, train_loss3: 14.9583, train_loss4: 64.8688, train_loss5: 6.4290]
+14 Apr 21:56    INFO  epoch 5 evaluating [time: 1.12s, valid_score: 0.086800]
+14 Apr 21:56    INFO  valid result: 
+recall@20 : 0.0868    recall@50 : 0.1267    ndcg@20 : 0.0501    ndcg@50 : 0.06    
+14 Apr 21:56    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:56    INFO  epoch 6 training [time: 28.59s, train_loss1: 285.4856, train_loss2: 0.0009, train_loss3: 15.0279, train_loss4: 64.2896, train_loss5: 6.3800]
+14 Apr 21:56    INFO  epoch 6 evaluating [time: 1.08s, valid_score: 0.092200]
+14 Apr 21:56    INFO  valid result: 
+recall@20 : 0.0922    recall@50 : 0.1361    ndcg@20 : 0.0534    ndcg@50 : 0.0643    
+14 Apr 21:56    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 21:57    INFO  epoch 7 training [time: 28.70s, train_loss1: 285.1989, train_loss2: 0.0010, train_loss3: 15.1227, train_loss4: 63.7789, train_loss5: 6.3366]
+14 Apr 21:57    INFO  epoch 7 evaluating [time: 1.12s, valid_score: 0.091800]
+14 Apr 21:57    INFO  valid result: 
+recall@20 : 0.0918    recall@50 : 0.1374    ndcg@20 : 0.0538    ndcg@50 : 0.0652    
+14 Apr 21:57    INFO  epoch 8 training [time: 28.56s, train_loss1: 284.7726, train_loss2: 0.0011, train_loss3: 15.2463, train_loss4: 63.3053, train_loss5: 6.2973]
+14 Apr 21:57    INFO  epoch 8 evaluating [time: 1.07s, valid_score: 0.080600]
+14 Apr 21:57    INFO  valid result: 
+recall@20 : 0.0806    recall@50 : 0.125    ndcg@20 : 0.0482    ndcg@50 : 0.0593    
+14 Apr 21:58    INFO  epoch 9 training [time: 28.58s, train_loss1: 284.0734, train_loss2: 0.0012, train_loss3: 15.3988, train_loss4: 62.8582, train_loss5: 6.2628]
+14 Apr 21:58    INFO  epoch 9 evaluating [time: 1.08s, valid_score: 0.065700]
+14 Apr 21:58    INFO  valid result: 
+recall@20 : 0.0657    recall@50 : 0.1053    ndcg@20 : 0.0399    ndcg@50 : 0.05    
+14 Apr 21:58    INFO  epoch 10 training [time: 28.58s, train_loss1: 282.9528, train_loss2: 0.0014, train_loss3: 15.6029, train_loss4: 62.4238, train_loss5: 6.2312]
+14 Apr 21:58    INFO  epoch 10 evaluating [time: 1.08s, valid_score: 0.055400]
+14 Apr 21:58    INFO  valid result: 
+recall@20 : 0.0554    recall@50 : 0.0919    ndcg@20 : 0.0348    ndcg@50 : 0.0442    
+14 Apr 21:59    INFO  epoch 11 training [time: 28.58s, train_loss1: 281.3776, train_loss2: 0.0015, train_loss3: 15.8870, train_loss4: 61.9700, train_loss5: 6.2004]
+14 Apr 21:59    INFO  epoch 11 evaluating [time: 1.09s, valid_score: 0.054500]
+14 Apr 21:59    INFO  valid result: 
+recall@20 : 0.0545    recall@50 : 0.0903    ndcg@20 : 0.0345    ndcg@50 : 0.0438    
+14 Apr 21:59    INFO  epoch 12 training [time: 28.59s, train_loss1: 279.0382, train_loss2: 0.0018, train_loss3: 16.2989, train_loss4: 61.4729, train_loss5: 6.1696]
+14 Apr 21:59    INFO  epoch 12 evaluating [time: 1.09s, valid_score: 0.057900]
+14 Apr 21:59    INFO  valid result: 
+recall@20 : 0.0579    recall@50 : 0.0963    ndcg@20 : 0.0368    ndcg@50 : 0.0467    
+14 Apr 22:00    INFO  epoch 13 training [time: 28.63s, train_loss1: 275.2133, train_loss2: 0.0021, train_loss3: 16.9297, train_loss4: 60.9097, train_loss5: 6.1380]
+14 Apr 22:00    INFO  epoch 13 evaluating [time: 1.12s, valid_score: 0.067600]
+14 Apr 22:00    INFO  valid result: 
+recall@20 : 0.0676    recall@50 : 0.1087    ndcg@20 : 0.0424    ndcg@50 : 0.0529    
+14 Apr 22:00    INFO  epoch 14 training [time: 28.67s, train_loss1: 269.0057, train_loss2: 0.0025, train_loss3: 18.0134, train_loss4: 60.1941, train_loss5: 6.0971]
+14 Apr 22:00    INFO  epoch 14 evaluating [time: 1.13s, valid_score: 0.082500]
+14 Apr 22:00    INFO  valid result: 
+recall@20 : 0.0825    recall@50 : 0.1296    ndcg@20 : 0.0511    ndcg@50 : 0.0631    
+14 Apr 22:01    INFO  epoch 15 training [time: 28.65s, train_loss1: 257.0651, train_loss2: 0.0031, train_loss3: 20.1022, train_loss4: 59.1977, train_loss5: 6.0501]
+14 Apr 22:01    INFO  epoch 15 evaluating [time: 1.09s, valid_score: 0.099300]
+14 Apr 22:01    INFO  valid result: 
+recall@20 : 0.0993    recall@50 : 0.1565    ndcg@20 : 0.0599    ndcg@50 : 0.0742    
+14 Apr 22:01    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:01    INFO  epoch 16 training [time: 28.61s, train_loss1: 231.8550, train_loss2: 0.0039, train_loss3: 24.3564, train_loss4: 57.8217, train_loss5: 5.9932]
+14 Apr 22:01    INFO  epoch 16 evaluating [time: 1.09s, valid_score: 0.121500]
+14 Apr 22:01    INFO  valid result: 
+recall@20 : 0.1215    recall@50 : 0.1946    ndcg@20 : 0.0719    ndcg@50 : 0.09    
+14 Apr 22:01    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:02    INFO  epoch 17 training [time: 28.60s, train_loss1: 177.5923, train_loss2: 0.0050, train_loss3: 32.5317, train_loss4: 56.0271, train_loss5: 6.0059]
+14 Apr 22:02    INFO  epoch 17 evaluating [time: 1.09s, valid_score: 0.131700]
+14 Apr 22:02    INFO  valid result: 
+recall@20 : 0.1317    recall@50 : 0.2116    ndcg@20 : 0.0756    ndcg@50 : 0.0952    
+14 Apr 22:02    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:02    INFO  epoch 18 training [time: 28.57s, train_loss1: 107.7499, train_loss2: 0.0062, train_loss3: 39.5048, train_loss4: 55.3271, train_loss5: 6.1753]
+14 Apr 22:02    INFO  epoch 18 evaluating [time: 1.09s, valid_score: 0.130400]
+14 Apr 22:02    INFO  valid result: 
+recall@20 : 0.1304    recall@50 : 0.211    ndcg@20 : 0.0744    ndcg@50 : 0.094    
+14 Apr 22:03    INFO  epoch 19 training [time: 28.57s, train_loss1: 70.2354, train_loss2: 0.0072, train_loss3: 41.2261, train_loss4: 55.3618, train_loss5: 6.2430]
+14 Apr 22:03    INFO  epoch 19 evaluating [time: 1.09s, valid_score: 0.133400]
+14 Apr 22:03    INFO  valid result: 
+recall@20 : 0.1334    recall@50 : 0.2163    ndcg@20 : 0.0759    ndcg@50 : 0.0961    
+14 Apr 22:03    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:03    INFO  epoch 20 training [time: 28.57s, train_loss1: 53.6108, train_loss2: 0.0079, train_loss3: 41.0233, train_loss4: 55.2484, train_loss5: 6.2443]
+14 Apr 22:03    INFO  epoch 20 evaluating [time: 1.08s, valid_score: 0.137600]
+14 Apr 22:03    INFO  valid result: 
+recall@20 : 0.1376    recall@50 : 0.2226    ndcg@20 : 0.0781    ndcg@50 : 0.0988    
+14 Apr 22:03    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:04    INFO  epoch 21 training [time: 28.66s, train_loss1: 44.2071, train_loss2: 0.0084, train_loss3: 40.3057, train_loss4: 55.0501, train_loss5: 6.2242]
+14 Apr 22:04    INFO  epoch 21 evaluating [time: 1.12s, valid_score: 0.141700]
+14 Apr 22:04    INFO  valid result: 
+recall@20 : 0.1417    recall@50 : 0.2295    ndcg@20 : 0.0803    ndcg@50 : 0.1016    
+14 Apr 22:04    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:04    INFO  epoch 22 training [time: 28.66s, train_loss1: 38.2774, train_loss2: 0.0089, train_loss3: 39.4239, train_loss4: 54.8320, train_loss5: 6.1962]
+14 Apr 22:04    INFO  epoch 22 evaluating [time: 1.09s, valid_score: 0.145900]
+14 Apr 22:04    INFO  valid result: 
+recall@20 : 0.1459    recall@50 : 0.2355    ndcg@20 : 0.0827    ndcg@50 : 0.1045    
+14 Apr 22:04    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:05    INFO  epoch 23 training [time: 28.70s, train_loss1: 33.9971, train_loss2: 0.0094, train_loss3: 38.4942, train_loss4: 54.6254, train_loss5: 6.1650]
+14 Apr 22:05    INFO  epoch 23 evaluating [time: 1.12s, valid_score: 0.149900]
+14 Apr 22:05    INFO  valid result: 
+recall@20 : 0.1499    recall@50 : 0.2426    ndcg@20 : 0.085    ndcg@50 : 0.1075    
+14 Apr 22:05    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:05    INFO  epoch 24 training [time: 28.51s, train_loss1: 30.5144, train_loss2: 0.0097, train_loss3: 37.5837, train_loss4: 54.4399, train_loss5: 6.1325]
+14 Apr 22:05    INFO  epoch 24 evaluating [time: 1.08s, valid_score: 0.153900]
+14 Apr 22:05    INFO  valid result: 
+recall@20 : 0.1539    recall@50 : 0.2484    ndcg@20 : 0.0872    ndcg@50 : 0.11    
+14 Apr 22:05    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:06    INFO  epoch 25 training [time: 28.70s, train_loss1: 27.9889, train_loss2: 0.0101, train_loss3: 36.7121, train_loss4: 54.2871, train_loss5: 6.1002]
+14 Apr 22:06    INFO  epoch 25 evaluating [time: 1.13s, valid_score: 0.157100]
+14 Apr 22:06    INFO  valid result: 
+recall@20 : 0.1571    recall@50 : 0.2546    ndcg@20 : 0.0889    ndcg@50 : 0.1125    
+14 Apr 22:06    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:06    INFO  epoch 26 training [time: 28.55s, train_loss1: 25.7570, train_loss2: 0.0104, train_loss3: 35.8853, train_loss4: 54.1605, train_loss5: 6.0689]
+14 Apr 22:06    INFO  epoch 26 evaluating [time: 1.08s, valid_score: 0.160400]
+14 Apr 22:06    INFO  valid result: 
+recall@20 : 0.1604    recall@50 : 0.2603    ndcg@20 : 0.0907    ndcg@50 : 0.1149    
+14 Apr 22:06    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:07    INFO  epoch 27 training [time: 28.78s, train_loss1: 23.8017, train_loss2: 0.0108, train_loss3: 35.1090, train_loss4: 54.0610, train_loss5: 6.0392]
+14 Apr 22:07    INFO  epoch 27 evaluating [time: 1.09s, valid_score: 0.163400]
+14 Apr 22:07    INFO  valid result: 
+recall@20 : 0.1634    recall@50 : 0.2658    ndcg@20 : 0.0924    ndcg@50 : 0.1172    
+14 Apr 22:07    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:07    INFO  epoch 28 training [time: 28.66s, train_loss1: 22.3281, train_loss2: 0.0110, train_loss3: 34.3917, train_loss4: 53.9831, train_loss5: 6.0110]
+14 Apr 22:07    INFO  epoch 28 evaluating [time: 1.12s, valid_score: 0.166500]
+14 Apr 22:07    INFO  valid result: 
+recall@20 : 0.1665    recall@50 : 0.2703    ndcg@20 : 0.0941    ndcg@50 : 0.1193    
+14 Apr 22:07    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:08    INFO  epoch 29 training [time: 28.85s, train_loss1: 20.8471, train_loss2: 0.0113, train_loss3: 33.7233, train_loss4: 53.9255, train_loss5: 5.9839]
+14 Apr 22:08    INFO  epoch 29 evaluating [time: 1.13s, valid_score: 0.169200]
+14 Apr 22:08    INFO  valid result: 
+recall@20 : 0.1692    recall@50 : 0.2749    ndcg@20 : 0.0956    ndcg@50 : 0.1213    
+14 Apr 22:08    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:08    INFO  epoch 30 training [time: 28.66s, train_loss1: 19.5966, train_loss2: 0.0116, train_loss3: 33.0979, train_loss4: 53.8865, train_loss5: 5.9587]
+14 Apr 22:08    INFO  epoch 30 evaluating [time: 1.11s, valid_score: 0.172400]
+14 Apr 22:08    INFO  valid result: 
+recall@20 : 0.1724    recall@50 : 0.2793    ndcg@20 : 0.0971    ndcg@50 : 0.123    
+14 Apr 22:08    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:09    INFO  epoch 31 training [time: 28.52s, train_loss1: 18.5387, train_loss2: 0.0118, train_loss3: 32.5300, train_loss4: 53.8579, train_loss5: 5.9354]
+14 Apr 22:09    INFO  epoch 31 evaluating [time: 1.09s, valid_score: 0.174600]
+14 Apr 22:09    INFO  valid result: 
+recall@20 : 0.1746    recall@50 : 0.2841    ndcg@20 : 0.0985    ndcg@50 : 0.125    
+14 Apr 22:09    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:09    INFO  epoch 32 training [time: 28.75s, train_loss1: 17.5575, train_loss2: 0.0121, train_loss3: 31.9967, train_loss4: 53.8423, train_loss5: 5.9132]
+14 Apr 22:09    INFO  epoch 32 evaluating [time: 1.13s, valid_score: 0.177400]
+14 Apr 22:09    INFO  valid result: 
+recall@20 : 0.1774    recall@50 : 0.2885    ndcg@20 : 0.1001    ndcg@50 : 0.127    
+14 Apr 22:09    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:10    INFO  epoch 33 training [time: 28.81s, train_loss1: 16.6215, train_loss2: 0.0123, train_loss3: 31.4987, train_loss4: 53.8360, train_loss5: 5.8928]
+14 Apr 22:10    INFO  epoch 33 evaluating [time: 1.09s, valid_score: 0.179700]
+14 Apr 22:10    INFO  valid result: 
+recall@20 : 0.1797    recall@50 : 0.2915    ndcg@20 : 0.1015    ndcg@50 : 0.1286    
+14 Apr 22:10    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:10    INFO  epoch 34 training [time: 28.55s, train_loss1: 15.7787, train_loss2: 0.0125, train_loss3: 31.0469, train_loss4: 53.8364, train_loss5: 5.8742]
+14 Apr 22:10    INFO  epoch 34 evaluating [time: 1.08s, valid_score: 0.181900]
+14 Apr 22:10    INFO  valid result: 
+recall@20 : 0.1819    recall@50 : 0.2951    ndcg@20 : 0.1027    ndcg@50 : 0.1301    
+14 Apr 22:10    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:11    INFO  epoch 35 training [time: 28.70s, train_loss1: 15.1474, train_loss2: 0.0128, train_loss3: 30.6151, train_loss4: 53.8455, train_loss5: 5.8559]
+14 Apr 22:11    INFO  epoch 35 evaluating [time: 1.11s, valid_score: 0.184100]
+14 Apr 22:11    INFO  valid result: 
+recall@20 : 0.1841    recall@50 : 0.2976    ndcg@20 : 0.1039    ndcg@50 : 0.1315    
+14 Apr 22:11    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:11    INFO  epoch 36 training [time: 28.80s, train_loss1: 14.4449, train_loss2: 0.0130, train_loss3: 30.2181, train_loss4: 53.8576, train_loss5: 5.8393]
+14 Apr 22:11    INFO  epoch 36 evaluating [time: 1.13s, valid_score: 0.185700]
+14 Apr 22:11    INFO  valid result: 
+recall@20 : 0.1857    recall@50 : 0.3005    ndcg@20 : 0.1049    ndcg@50 : 0.1328    
+14 Apr 22:11    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:12    INFO  epoch 37 training [time: 28.67s, train_loss1: 13.8305, train_loss2: 0.0132, train_loss3: 29.8519, train_loss4: 53.8722, train_loss5: 5.8241]
+14 Apr 22:12    INFO  epoch 37 evaluating [time: 1.13s, valid_score: 0.187600]
+14 Apr 22:12    INFO  valid result: 
+recall@20 : 0.1876    recall@50 : 0.3039    ndcg@20 : 0.106    ndcg@50 : 0.1342    
+14 Apr 22:12    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:12    INFO  epoch 38 training [time: 28.87s, train_loss1: 13.2412, train_loss2: 0.0134, train_loss3: 29.5006, train_loss4: 53.8935, train_loss5: 5.8100]
+14 Apr 22:12    INFO  epoch 38 evaluating [time: 1.12s, valid_score: 0.189700]
+14 Apr 22:12    INFO  valid result: 
+recall@20 : 0.1897    recall@50 : 0.306    ndcg@20 : 0.1071    ndcg@50 : 0.1353    
+14 Apr 22:12    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:13    INFO  epoch 39 training [time: 28.72s, train_loss1: 12.7480, train_loss2: 0.0136, train_loss3: 29.1728, train_loss4: 53.9181, train_loss5: 5.7964]
+14 Apr 22:13    INFO  epoch 39 evaluating [time: 1.08s, valid_score: 0.192200]
+14 Apr 22:13    INFO  valid result: 
+recall@20 : 0.1922    recall@50 : 0.309    ndcg@20 : 0.1084    ndcg@50 : 0.1367    
+14 Apr 22:13    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:13    INFO  epoch 40 training [time: 28.82s, train_loss1: 12.2151, train_loss2: 0.0137, train_loss3: 28.8610, train_loss4: 53.9455, train_loss5: 5.7841]
+14 Apr 22:13    INFO  epoch 40 evaluating [time: 1.09s, valid_score: 0.193700]
+14 Apr 22:13    INFO  valid result: 
+recall@20 : 0.1937    recall@50 : 0.3104    ndcg@20 : 0.1092    ndcg@50 : 0.1376    
+14 Apr 22:13    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:14    INFO  epoch 41 training [time: 28.71s, train_loss1: 11.8322, train_loss2: 0.0139, train_loss3: 28.5758, train_loss4: 53.9722, train_loss5: 5.7726]
+14 Apr 22:14    INFO  epoch 41 evaluating [time: 1.09s, valid_score: 0.194900]
+14 Apr 22:14    INFO  valid result: 
+recall@20 : 0.1949    recall@50 : 0.3124    ndcg@20 : 0.11    ndcg@50 : 0.1385    
+14 Apr 22:14    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:14    INFO  epoch 42 training [time: 28.73s, train_loss1: 11.4805, train_loss2: 0.0141, train_loss3: 28.2955, train_loss4: 54.0035, train_loss5: 5.7617]
+14 Apr 22:14    INFO  epoch 42 evaluating [time: 1.12s, valid_score: 0.197300]
+14 Apr 22:14    INFO  valid result: 
+recall@20 : 0.1973    recall@50 : 0.3138    ndcg@20 : 0.1109    ndcg@50 : 0.1393    
+14 Apr 22:14    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:15    INFO  epoch 43 training [time: 28.59s, train_loss1: 11.0754, train_loss2: 0.0142, train_loss3: 28.0316, train_loss4: 54.0371, train_loss5: 5.7515]
+14 Apr 22:15    INFO  epoch 43 evaluating [time: 1.09s, valid_score: 0.197900]
+14 Apr 22:15    INFO  valid result: 
+recall@20 : 0.1979    recall@50 : 0.3151    ndcg@20 : 0.1114    ndcg@50 : 0.14    
+14 Apr 22:15    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:15    INFO  epoch 44 training [time: 28.72s, train_loss1: 10.9309, train_loss2: 0.0144, train_loss3: 27.7855, train_loss4: 54.0697, train_loss5: 5.7420]
+14 Apr 22:15    INFO  epoch 44 evaluating [time: 1.13s, valid_score: 0.199900]
+14 Apr 22:15    INFO  valid result: 
+recall@20 : 0.1999    recall@50 : 0.3172    ndcg@20 : 0.1126    ndcg@50 : 0.1411    
+14 Apr 22:15    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:16    INFO  epoch 45 training [time: 28.77s, train_loss1: 10.3810, train_loss2: 0.0146, train_loss3: 27.5516, train_loss4: 54.1026, train_loss5: 5.7328]
+14 Apr 22:16    INFO  epoch 45 evaluating [time: 1.13s, valid_score: 0.201100]
+14 Apr 22:16    INFO  valid result: 
+recall@20 : 0.2011    recall@50 : 0.3185    ndcg@20 : 0.1133    ndcg@50 : 0.1419    
+14 Apr 22:16    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:16    INFO  epoch 46 training [time: 28.59s, train_loss1: 10.2494, train_loss2: 0.0147, train_loss3: 27.3324, train_loss4: 54.1361, train_loss5: 5.7241]
+14 Apr 22:16    INFO  epoch 46 evaluating [time: 1.09s, valid_score: 0.202700]
+14 Apr 22:16    INFO  valid result: 
+recall@20 : 0.2027    recall@50 : 0.3196    ndcg@20 : 0.1141    ndcg@50 : 0.1427    
+14 Apr 22:16    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:17    INFO  epoch 47 training [time: 28.68s, train_loss1: 9.8544, train_loss2: 0.0149, train_loss3: 27.1315, train_loss4: 54.1670, train_loss5: 5.7161]
+14 Apr 22:17    INFO  epoch 47 evaluating [time: 1.12s, valid_score: 0.203500]
+14 Apr 22:17    INFO  valid result: 
+recall@20 : 0.2035    recall@50 : 0.3203    ndcg@20 : 0.1147    ndcg@50 : 0.1433    
+14 Apr 22:17    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:17    INFO  epoch 48 training [time: 28.75s, train_loss1: 9.6077, train_loss2: 0.0150, train_loss3: 26.9367, train_loss4: 54.1985, train_loss5: 5.7087]
+14 Apr 22:17    INFO  epoch 48 evaluating [time: 1.10s, valid_score: 0.204700]
+14 Apr 22:17    INFO  valid result: 
+recall@20 : 0.2047    recall@50 : 0.3214    ndcg@20 : 0.1154    ndcg@50 : 0.1439    
+14 Apr 22:17    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:18    INFO  epoch 49 training [time: 28.56s, train_loss1: 9.3467, train_loss2: 0.0151, train_loss3: 26.7570, train_loss4: 54.2290, train_loss5: 5.7018]
+14 Apr 22:18    INFO  epoch 49 evaluating [time: 1.09s, valid_score: 0.205400]
+14 Apr 22:18    INFO  valid result: 
+recall@20 : 0.2054    recall@50 : 0.3225    ndcg@20 : 0.1159    ndcg@50 : 0.1445    
+14 Apr 22:18    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:18    INFO  epoch 50 training [time: 28.72s, train_loss1: 9.1620, train_loss2: 0.0153, train_loss3: 26.5771, train_loss4: 54.2636, train_loss5: 5.6950]
+14 Apr 22:18    INFO  epoch 50 evaluating [time: 1.09s, valid_score: 0.206300]
+14 Apr 22:18    INFO  valid result: 
+recall@20 : 0.2063    recall@50 : 0.3234    ndcg@20 : 0.1165    ndcg@50 : 0.1452    
+14 Apr 22:18    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:19    INFO  epoch 51 training [time: 28.71s, train_loss1: 8.9159, train_loss2: 0.0154, train_loss3: 26.4061, train_loss4: 54.2973, train_loss5: 5.6888]
+14 Apr 22:19    INFO  epoch 51 evaluating [time: 1.11s, valid_score: 0.207000]
+14 Apr 22:19    INFO  valid result: 
+recall@20 : 0.207    recall@50 : 0.3244    ndcg@20 : 0.1168    ndcg@50 : 0.1456    
+14 Apr 22:19    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:19    INFO  epoch 52 training [time: 28.72s, train_loss1: 8.8365, train_loss2: 0.0155, train_loss3: 26.2408, train_loss4: 54.3312, train_loss5: 5.6827]
+14 Apr 22:19    INFO  epoch 52 evaluating [time: 1.12s, valid_score: 0.207200]
+14 Apr 22:19    INFO  valid result: 
+recall@20 : 0.2072    recall@50 : 0.3252    ndcg@20 : 0.117    ndcg@50 : 0.1459    
+14 Apr 22:19    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:20    INFO  epoch 53 training [time: 28.72s, train_loss1: 8.4633, train_loss2: 0.0157, train_loss3: 26.0877, train_loss4: 54.3621, train_loss5: 5.6770]
+14 Apr 22:20    INFO  epoch 53 evaluating [time: 1.10s, valid_score: 0.207300]
+14 Apr 22:20    INFO  valid result: 
+recall@20 : 0.2073    recall@50 : 0.3259    ndcg@20 : 0.1175    ndcg@50 : 0.1466    
+14 Apr 22:20    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:20    INFO  epoch 54 training [time: 28.84s, train_loss1: 8.3559, train_loss2: 0.0158, train_loss3: 25.9464, train_loss4: 54.3909, train_loss5: 5.6720]
+14 Apr 22:20    INFO  epoch 54 evaluating [time: 1.09s, valid_score: 0.208700]
+14 Apr 22:20    INFO  valid result: 
+recall@20 : 0.2087    recall@50 : 0.3263    ndcg@20 : 0.118    ndcg@50 : 0.1469    
+14 Apr 22:20    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:21    INFO  epoch 55 training [time: 28.56s, train_loss1: 8.1186, train_loss2: 0.0159, train_loss3: 25.8115, train_loss4: 54.4194, train_loss5: 5.6673]
+14 Apr 22:21    INFO  epoch 55 evaluating [time: 1.08s, valid_score: 0.209100]
+14 Apr 22:21    INFO  valid result: 
+recall@20 : 0.2091    recall@50 : 0.327    ndcg@20 : 0.1182    ndcg@50 : 0.1471    
+14 Apr 22:21    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:21    INFO  epoch 56 training [time: 28.72s, train_loss1: 7.9307, train_loss2: 0.0160, train_loss3: 25.6767, train_loss4: 54.4499, train_loss5: 5.6625]
+14 Apr 22:21    INFO  epoch 56 evaluating [time: 1.12s, valid_score: 0.209800]
+14 Apr 22:21    INFO  valid result: 
+recall@20 : 0.2098    recall@50 : 0.3273    ndcg@20 : 0.1186    ndcg@50 : 0.1474    
+14 Apr 22:21    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:22    INFO  epoch 57 training [time: 28.62s, train_loss1: 7.8365, train_loss2: 0.0161, train_loss3: 25.5492, train_loss4: 54.4813, train_loss5: 5.6578]
+14 Apr 22:22    INFO  epoch 57 evaluating [time: 1.12s, valid_score: 0.210300]
+14 Apr 22:22    INFO  valid result: 
+recall@20 : 0.2103    recall@50 : 0.3281    ndcg@20 : 0.119    ndcg@50 : 0.1479    
+14 Apr 22:22    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:22    INFO  epoch 58 training [time: 28.75s, train_loss1: 7.4709, train_loss2: 0.0163, train_loss3: 25.4361, train_loss4: 54.5054, train_loss5: 5.6536]
+14 Apr 22:22    INFO  epoch 58 evaluating [time: 1.11s, valid_score: 0.210500]
+14 Apr 22:22    INFO  valid result: 
+recall@20 : 0.2105    recall@50 : 0.3289    ndcg@20 : 0.1191    ndcg@50 : 0.1482    
+14 Apr 22:22    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:23    INFO  epoch 59 training [time: 28.57s, train_loss1: 7.4087, train_loss2: 0.0164, train_loss3: 25.3215, train_loss4: 54.5330, train_loss5: 5.6497]
+14 Apr 22:23    INFO  epoch 59 evaluating [time: 1.14s, valid_score: 0.210800]
+14 Apr 22:23    INFO  valid result: 
+recall@20 : 0.2108    recall@50 : 0.3295    ndcg@20 : 0.1194    ndcg@50 : 0.1486    
+14 Apr 22:23    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:23    INFO  epoch 60 training [time: 28.64s, train_loss1: 7.3473, train_loss2: 0.0165, train_loss3: 25.2172, train_loss4: 54.5591, train_loss5: 5.6457]
+14 Apr 22:23    INFO  epoch 60 evaluating [time: 1.09s, valid_score: 0.211400]
+14 Apr 22:23    INFO  valid result: 
+recall@20 : 0.2114    recall@50 : 0.3288    ndcg@20 : 0.1197    ndcg@50 : 0.1486    
+14 Apr 22:23    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:24    INFO  epoch 61 training [time: 28.90s, train_loss1: 7.3193, train_loss2: 0.0166, train_loss3: 25.0920, train_loss4: 54.5945, train_loss5: 5.6422]
+14 Apr 22:24    INFO  epoch 61 evaluating [time: 1.10s, valid_score: 0.210900]
+14 Apr 22:24    INFO  valid result: 
+recall@20 : 0.2109    recall@50 : 0.3289    ndcg@20 : 0.1198    ndcg@50 : 0.1488    
+14 Apr 22:24    INFO  epoch 62 training [time: 28.62s, train_loss1: 7.1272, train_loss2: 0.0167, train_loss3: 24.9819, train_loss4: 54.6247, train_loss5: 5.6389]
+14 Apr 22:24    INFO  epoch 62 evaluating [time: 1.11s, valid_score: 0.211100]
+14 Apr 22:24    INFO  valid result: 
+recall@20 : 0.2111    recall@50 : 0.3296    ndcg@20 : 0.12    ndcg@50 : 0.1491    
+14 Apr 22:25    INFO  epoch 63 training [time: 28.57s, train_loss1: 6.9889, train_loss2: 0.0168, train_loss3: 24.8862, train_loss4: 54.6471, train_loss5: 5.6359]
+14 Apr 22:25    INFO  epoch 63 evaluating [time: 1.13s, valid_score: 0.211300]
+14 Apr 22:25    INFO  valid result: 
+recall@20 : 0.2113    recall@50 : 0.3301    ndcg@20 : 0.12    ndcg@50 : 0.1492    
+14 Apr 22:25    INFO  epoch 64 training [time: 29.03s, train_loss1: 6.9236, train_loss2: 0.0169, train_loss3: 24.7933, train_loss4: 54.6722, train_loss5: 5.6326]
+14 Apr 22:25    INFO  epoch 64 evaluating [time: 1.12s, valid_score: 0.212000]
+14 Apr 22:25    INFO  valid result: 
+recall@20 : 0.212    recall@50 : 0.3303    ndcg@20 : 0.1203    ndcg@50 : 0.1494    
+14 Apr 22:25    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:26    INFO  epoch 65 training [time: 28.73s, train_loss1: 6.7959, train_loss2: 0.0170, train_loss3: 24.7028, train_loss4: 54.6980, train_loss5: 5.6295]
+14 Apr 22:26    INFO  epoch 65 evaluating [time: 1.12s, valid_score: 0.211800]
+14 Apr 22:26    INFO  valid result: 
+recall@20 : 0.2118    recall@50 : 0.3302    ndcg@20 : 0.1204    ndcg@50 : 0.1496    
+14 Apr 22:26    INFO  epoch 66 training [time: 28.71s, train_loss1: 6.6067, train_loss2: 0.0171, train_loss3: 24.6081, train_loss4: 54.7242, train_loss5: 5.6268]
+14 Apr 22:26    INFO  epoch 66 evaluating [time: 1.09s, valid_score: 0.212100]
+14 Apr 22:26    INFO  valid result: 
+recall@20 : 0.2121    recall@50 : 0.3311    ndcg@20 : 0.1207    ndcg@50 : 0.1499    
+14 Apr 22:26    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:27    INFO  epoch 67 training [time: 28.78s, train_loss1: 6.6610, train_loss2: 0.0172, train_loss3: 24.5137, train_loss4: 54.7530, train_loss5: 5.6240]
+14 Apr 22:27    INFO  epoch 67 evaluating [time: 1.12s, valid_score: 0.212100]
+14 Apr 22:27    INFO  valid result: 
+recall@20 : 0.2121    recall@50 : 0.331    ndcg@20 : 0.1208    ndcg@50 : 0.1501    
+14 Apr 22:27    INFO  epoch 68 training [time: 28.57s, train_loss1: 6.5562, train_loss2: 0.0173, train_loss3: 24.4202, train_loss4: 54.7821, train_loss5: 5.6214]
+14 Apr 22:27    INFO  epoch 68 evaluating [time: 1.13s, valid_score: 0.212800]
+14 Apr 22:27    INFO  valid result: 
+recall@20 : 0.2128    recall@50 : 0.3314    ndcg@20 : 0.1211    ndcg@50 : 0.1503    
+14 Apr 22:27    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:28    INFO  epoch 69 training [time: 28.60s, train_loss1: 6.4830, train_loss2: 0.0173, train_loss3: 24.3376, train_loss4: 54.8054, train_loss5: 5.6191]
+14 Apr 22:28    INFO  epoch 69 evaluating [time: 1.08s, valid_score: 0.213100]
+14 Apr 22:28    INFO  valid result: 
+recall@20 : 0.2131    recall@50 : 0.3314    ndcg@20 : 0.1214    ndcg@50 : 0.1504    
+14 Apr 22:28    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:28    INFO  epoch 70 training [time: 28.51s, train_loss1: 6.2681, train_loss2: 0.0174, train_loss3: 24.2621, train_loss4: 54.8288, train_loss5: 5.6166]
+14 Apr 22:28    INFO  epoch 70 evaluating [time: 1.08s, valid_score: 0.213600]
+14 Apr 22:28    INFO  valid result: 
+recall@20 : 0.2136    recall@50 : 0.3322    ndcg@20 : 0.1216    ndcg@50 : 0.1507    
+14 Apr 22:28    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:29    INFO  epoch 71 training [time: 28.77s, train_loss1: 6.3163, train_loss2: 0.0175, train_loss3: 24.1951, train_loss4: 54.8476, train_loss5: 5.6144]
+14 Apr 22:29    INFO  epoch 71 evaluating [time: 1.11s, valid_score: 0.213400]
+14 Apr 22:29    INFO  valid result: 
+recall@20 : 0.2134    recall@50 : 0.3323    ndcg@20 : 0.1215    ndcg@50 : 0.1507    
+14 Apr 22:29    INFO  epoch 72 training [time: 28.68s, train_loss1: 6.1954, train_loss2: 0.0176, train_loss3: 24.1210, train_loss4: 54.8711, train_loss5: 5.6121]
+14 Apr 22:29    INFO  epoch 72 evaluating [time: 1.13s, valid_score: 0.213500]
+14 Apr 22:29    INFO  valid result: 
+recall@20 : 0.2135    recall@50 : 0.3324    ndcg@20 : 0.1217    ndcg@50 : 0.1509    
+14 Apr 22:30    INFO  epoch 73 training [time: 28.74s, train_loss1: 6.1543, train_loss2: 0.0177, train_loss3: 24.0419, train_loss4: 54.8981, train_loss5: 5.6100]
+14 Apr 22:30    INFO  epoch 73 evaluating [time: 1.11s, valid_score: 0.214000]
+14 Apr 22:30    INFO  valid result: 
+recall@20 : 0.214    recall@50 : 0.3323    ndcg@20 : 0.1218    ndcg@50 : 0.1509    
+14 Apr 22:30    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:30    INFO  epoch 74 training [time: 28.56s, train_loss1: 6.1013, train_loss2: 0.0178, train_loss3: 23.9696, train_loss4: 54.9222, train_loss5: 5.6081]
+14 Apr 22:30    INFO  epoch 74 evaluating [time: 1.08s, valid_score: 0.214600]
+14 Apr 22:30    INFO  valid result: 
+recall@20 : 0.2146    recall@50 : 0.3326    ndcg@20 : 0.1221    ndcg@50 : 0.151    
+14 Apr 22:30    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:31    INFO  epoch 75 training [time: 28.65s, train_loss1: 5.9272, train_loss2: 0.0178, train_loss3: 23.9028, train_loss4: 54.9443, train_loss5: 5.6063]
+14 Apr 22:31    INFO  epoch 75 evaluating [time: 1.09s, valid_score: 0.214300]
+14 Apr 22:31    INFO  valid result: 
+recall@20 : 0.2143    recall@50 : 0.3326    ndcg@20 : 0.122    ndcg@50 : 0.1511    
+14 Apr 22:31    INFO  epoch 76 training [time: 28.66s, train_loss1: 5.8577, train_loss2: 0.0179, train_loss3: 23.8484, train_loss4: 54.9585, train_loss5: 5.6046]
+14 Apr 22:31    INFO  epoch 76 evaluating [time: 1.12s, valid_score: 0.214300]
+14 Apr 22:31    INFO  valid result: 
+recall@20 : 0.2143    recall@50 : 0.3324    ndcg@20 : 0.122    ndcg@50 : 0.151    
+14 Apr 22:32    INFO  epoch 77 training [time: 28.62s, train_loss1: 5.9146, train_loss2: 0.0180, train_loss3: 23.7806, train_loss4: 54.9806, train_loss5: 5.6031]
+14 Apr 22:32    INFO  epoch 77 evaluating [time: 1.11s, valid_score: 0.214400]
+14 Apr 22:32    INFO  valid result: 
+recall@20 : 0.2144    recall@50 : 0.3326    ndcg@20 : 0.1222    ndcg@50 : 0.1512    
+14 Apr 22:32    INFO  epoch 78 training [time: 28.56s, train_loss1: 5.6898, train_loss2: 0.0181, train_loss3: 23.7223, train_loss4: 54.9987, train_loss5: 5.6016]
+14 Apr 22:32    INFO  epoch 78 evaluating [time: 1.17s, valid_score: 0.214800]
+14 Apr 22:32    INFO  valid result: 
+recall@20 : 0.2148    recall@50 : 0.3325    ndcg@20 : 0.1223    ndcg@50 : 0.1512    
+14 Apr 22:32    INFO  Saving current best: saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:33    INFO  epoch 79 training [time: 28.73s, train_loss1: 5.6606, train_loss2: 0.0182, train_loss3: 23.6643, train_loss4: 55.0164, train_loss5: 5.6003]
+14 Apr 22:33    INFO  epoch 79 evaluating [time: 1.09s, valid_score: 0.214300]
+14 Apr 22:33    INFO  valid result: 
+recall@20 : 0.2143    recall@50 : 0.3324    ndcg@20 : 0.1222    ndcg@50 : 0.1512    
+14 Apr 22:33    INFO  epoch 80 training [time: 28.68s, train_loss1: 5.6876, train_loss2: 0.0182, train_loss3: 23.6064, train_loss4: 55.0365, train_loss5: 5.5987]
+14 Apr 22:33    INFO  epoch 80 evaluating [time: 1.08s, valid_score: 0.214400]
+14 Apr 22:33    INFO  valid result: 
+recall@20 : 0.2144    recall@50 : 0.3325    ndcg@20 : 0.1222    ndcg@50 : 0.1512    
+14 Apr 22:34    INFO  epoch 81 training [time: 28.72s, train_loss1: 5.4913, train_loss2: 0.0183, train_loss3: 23.5372, train_loss4: 55.0623, train_loss5: 5.5975]
+14 Apr 22:34    INFO  epoch 81 evaluating [time: 1.10s, valid_score: 0.214400]
+14 Apr 22:34    INFO  valid result: 
+recall@20 : 0.2144    recall@50 : 0.3323    ndcg@20 : 0.1221    ndcg@50 : 0.1511    
+14 Apr 22:34    INFO  epoch 82 training [time: 28.54s, train_loss1: 5.5089, train_loss2: 0.0184, train_loss3: 23.4864, train_loss4: 55.0769, train_loss5: 5.5963]
+14 Apr 22:34    INFO  epoch 82 evaluating [time: 1.10s, valid_score: 0.214600]
+14 Apr 22:34    INFO  valid result: 
+recall@20 : 0.2146    recall@50 : 0.3324    ndcg@20 : 0.1222    ndcg@50 : 0.1511    
+14 Apr 22:35    INFO  epoch 83 training [time: 28.69s, train_loss1: 5.4047, train_loss2: 0.0185, train_loss3: 23.4366, train_loss4: 55.0920, train_loss5: 5.5951]
+14 Apr 22:35    INFO  epoch 83 evaluating [time: 1.11s, valid_score: 0.214300]
+14 Apr 22:35    INFO  valid result: 
+recall@20 : 0.2143    recall@50 : 0.3315    ndcg@20 : 0.1223    ndcg@50 : 0.1511    
+14 Apr 22:35    INFO  epoch 84 training [time: 28.63s, train_loss1: 5.3513, train_loss2: 0.0185, train_loss3: 23.3827, train_loss4: 55.1082, train_loss5: 5.5942]
+14 Apr 22:35    INFO  epoch 84 evaluating [time: 1.13s, valid_score: 0.214400]
+14 Apr 22:35    INFO  valid result: 
+recall@20 : 0.2144    recall@50 : 0.3318    ndcg@20 : 0.1224    ndcg@50 : 0.1513    
+14 Apr 22:36    INFO  epoch 85 training [time: 28.59s, train_loss1: 5.3120, train_loss2: 0.0186, train_loss3: 23.3282, train_loss4: 55.1278, train_loss5: 5.5933]
+14 Apr 22:36    INFO  epoch 85 evaluating [time: 1.13s, valid_score: 0.214100]
+14 Apr 22:36    INFO  valid result: 
+recall@20 : 0.2141    recall@50 : 0.3314    ndcg@20 : 0.1223    ndcg@50 : 0.1511    
+14 Apr 22:36    INFO  epoch 86 training [time: 28.78s, train_loss1: 5.2673, train_loss2: 0.0187, train_loss3: 23.2729, train_loss4: 55.1472, train_loss5: 5.5923]
+14 Apr 22:36    INFO  epoch 86 evaluating [time: 1.14s, valid_score: 0.214000]
+14 Apr 22:36    INFO  valid result: 
+recall@20 : 0.214    recall@50 : 0.3317    ndcg@20 : 0.1223    ndcg@50 : 0.1512    
+14 Apr 22:37    INFO  epoch 87 training [time: 28.67s, train_loss1: 5.2806, train_loss2: 0.0187, train_loss3: 23.2218, train_loss4: 55.1654, train_loss5: 5.5913]
+14 Apr 22:37    INFO  epoch 87 evaluating [time: 1.12s, valid_score: 0.213700]
+14 Apr 22:37    INFO  valid result: 
+recall@20 : 0.2137    recall@50 : 0.3312    ndcg@20 : 0.1224    ndcg@50 : 0.1512    
+14 Apr 22:37    INFO  epoch 88 training [time: 28.68s, train_loss1: 5.1994, train_loss2: 0.0188, train_loss3: 23.1724, train_loss4: 55.1824, train_loss5: 5.5903]
+14 Apr 22:37    INFO  epoch 88 evaluating [time: 1.12s, valid_score: 0.214000]
+14 Apr 22:37    INFO  valid result: 
+recall@20 : 0.214    recall@50 : 0.3309    ndcg@20 : 0.1224    ndcg@50 : 0.1512    
+14 Apr 22:38    INFO  epoch 89 training [time: 28.56s, train_loss1: 5.2150, train_loss2: 0.0189, train_loss3: 23.1210, train_loss4: 55.2022, train_loss5: 5.5892]
+14 Apr 22:38    INFO  epoch 89 evaluating [time: 1.08s, valid_score: 0.214100]
+14 Apr 22:38    INFO  valid result: 
+recall@20 : 0.2141    recall@50 : 0.3311    ndcg@20 : 0.1223    ndcg@50 : 0.1511    
+14 Apr 22:38    INFO  Finished training, best eval result in epoch 78
+14 Apr 22:38    INFO  Loading model structure and parameters from saved/CGCL-Apr-14-2023_21-53-23.pth
+14 Apr 22:38    INFO  best valid : {'recall@20': 0.2148, 'recall@50': 0.3325, 'ndcg@20': 0.1223, 'ndcg@50': 0.1512}
+14 Apr 22:38    INFO  test result: {'recall@20': 0.2205, 'recall@50': 0.3391, 'ndcg@20': 0.1292, 'ndcg@50': 0.1583}

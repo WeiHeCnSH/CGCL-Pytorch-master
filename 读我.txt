@@ -1,0 +1,82 @@
+SIGIR 2023,Candidate–aware Graph Contrastive Learning for Recommendation
+本文基于RecBole使用Pytorch在RTX 1080 12G CUDA 10.2的设备上实现CGCL，在此感谢RecBole的贡献。
+代码使用python 3.7.7实现，一些关键的包如下所示：
+recbole == 1.0.0
+torch == 1.13.0
+torchvision == 0.4.0
+numpy == 1.21.6
+pandas == 1.3.5
+scipy == 1.6.0
+
+数据集统计信息
+    DataSets & $\#$Users & $\#$Items & $\#$Interactions & $\#$Density \\
+    \hline
+    \hline
+    Yelp & 45,478 & 30,709 & 1,777,765 & 0.00127 \\
+    \hline
+    Gowalla & 29,859 & 40,989 & 1,027,464 & 0.00084 \\
+    \hline
+    Books & 58,145 & 58,052 & 2,517,437 & 0.00075 \\
+注意事项：
+如果使用recbole的数据集自动下载功能，由于网络问题，会导致下载的数据集不完整，为了方便您的使用，我们也提供了我们下载的原始数据集。
+
+
+重要参数设置：
+yelp2018 dataset
+embedding_size: 64
+n_layers: 3
+learner: adam
+learning_rate: 1e-3
+reg_weight: 1e-4
+ssl_temp: 0.1
+hyper_layers: 1
+alpha: 0.5
+beta: 0.5
+gamma: 0.5
+ssl_reg_alpha: 1e-5
+ssl_reg_beta: 1e-5
+ssl_reg_gamma: 1e-6
+
+
+gowalla-merged dataset
+embedding_size: 64
+n_layers: 3
+learner: adam
+learning_rate: 1e-3
+reg_weight: 1e-4
+ssl_temp: 0.1
+hyper_layers: 1
+alpha: 0.4
+beta: 0.4
+gamma: 0.4
+ssl_reg_alpha: 1e-5
+ssl_reg_beta: 1e-5
+ssl_reg_gamma: 1e-6
+
+amazon-books dataset
+embedding_size: 64
+n_layers: 3
+learner: adam
+learning_rate: 1e-3
+reg_weight: 1e-4
+ssl_temp: 0.1
+hyper_layers: 1
+alpha: 0.6
+beta: 0.6
+gamma: 0.6
+ssl_reg_alpha: 1e-5
+ssl_reg_beta: 1e-5
+ssl_reg_gamma: 1e-6
+
+注意，为了公平的对比，基于GCL的方法（SGL,NCL,CGCL）汇报的结果都使用3层的LightGCNGNN骨架，我们根据原始论文里面的结果进行网格搜索寻找最优的参数。
+
+您可以使用如下命令分别启动三个数据集，结果将会被保存：
+nohup python main.py --dataset yelp  --config_files=test.yaml --gpu_id=0 >CGCL-yelp.txt 2>&1 &
+nohup python main.py --dataset gowalla-merged  --config_files=test.yaml --gpu_id=0 >CGCL-gowalla-merged.txt 2>&1 &
+nohup python main.py --dataset amazon-books  --config_files=test.yaml --gpu_id=0 >CGCL-amazon-books.txt 2>&1 &
+
+我们也提供表2中，我们提出的方法所报告的最优值，在三个数据集上的结果分别见CGCL-yelp.txt、CGCL-gowalla-merged.txt、CGCL-amazon-books.txt三个文件。
+此外，提供的日志中CGCL每轮的训练时间在不同的机器上可能有较大差别，因为需要与其他使用者共享设备。
+
+联系：
+如果你有任何问题，请与2212483@mail.dhu.edu.cn联系
