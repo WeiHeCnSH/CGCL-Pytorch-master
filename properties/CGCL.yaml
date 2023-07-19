@@ -1,0 +1,32 @@
+eval_setting:
+  split:
+    RS: [0.8, 0.1, 0.1]
+  order: RO
+  group_by: user
+  mode: full
+seed: 2023
+reproducibility: True
+neg_sampling: {'uniform': 1}
+train_batch_size: 2048
+eval_batch_size: 4096000
+valid_metric: Recall@20
+stopping_step: 10
+metrics: ["Recall","NDCG"]
+topk: [20,50]
+embedding_size: 64
+n_layers: 3
+
+learner: adam
+learning_rate: 1e-3
+reg_weight: 1e-4
+
+ssl_temp: 0.1
+alpha: 0.5
+beta: 0.5
+gamma: 0.5
+ssl_reg_alpha: 1e-5
+ssl_reg_beta: 1e-5
+ssl_reg_gamma: 1e-6
+
+show_progress: False
+gpu_id: 0

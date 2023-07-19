@@ -1,0 +1,25 @@
+load_col:
+  inter: [user_id, item_id]
+
+user_inter_num_interval: "[10,inf)"
+item_inter_num_interval: "[10,inf)"
+
+embedding_size: 64
+n_layers: 3
+
+learner: adam
+learning_rate: 1e-3
+reg_weight: 1e-4
+
+ssl_temp: 0.1
+alpha: 0.4
+beta: 0.4
+gamma: 0.4
+ssl_reg_alpha: 1e-5
+ssl_reg_beta: 1e-5
+ssl_reg_gamma: 1e-6
+
+show_progress: False
+gpu_id: 0
+
+
